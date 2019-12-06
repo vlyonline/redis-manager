@@ -2,8 +2,13 @@
     <layout>
         <div>
             <div style="margin-top: 15px;">
-                <el-input placeholder="*" v-model="pattern" @keyup.enter.native="scan"></el-input>
+                <el-input placeholder="*" v-model="pattern" @keyup.enter.native="scan" class="input-with-select">
 
+                  <el-select v-model="db" slot="prepend" placeholder="SELECT DB">
+                    <el-option v-for="db in 16" :key="db-1" :label="'SELECT '+(db-1)" :value="db-1"></el-option>
+                  </el-select>
+
+                </el-input>
                 <div class="button-group">
                   
                     <el-button class="action-btns" @click="scan" type="primary" size="small"><i class="fa fa-search"></i>&nbsp;Search</el-button>
@@ -93,7 +98,8 @@ export default {
   data() {
     return {
       pattern: "*",
-      select: "1",
+      // select: "1",
+      db: "0",
       multipleSelection: [],
       keys: [],
       loading: true,
@@ -119,7 +125,7 @@ export default {
     scan() {
       this.loading = true;
 
-      this.$redis.scan(this.pattern).then(response => {
+      this.$redis.scan(this.db, this.pattern).then(response => {
         this.keys = response.data;
 
         this.loading = false;

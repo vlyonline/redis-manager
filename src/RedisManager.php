@@ -197,11 +197,13 @@ class RedisManager
      *
      * @return array|\Predis\Pipeline\Pipeline
      */
-    public function scan($pattern = '*', $count = 100)
+    public function scan($db="1", $pattern = '*', $count = 100)
     {
         $client = $this->getConnection();
         $keys = [];
-
+        if ($db !== null) {
+            $client->select($db);
+        }
         foreach (new Keyspace($client->client(), $pattern) as $item) {
             $keys[] = $item;
 

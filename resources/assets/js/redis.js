@@ -242,8 +242,9 @@ export default class {
     return this.$http.put('/keys', params);
   }
 
-  scan(pattern) {
+  scan(db,pattern) {
     const params = {
+      db,
       pattern,
       conn: this.getConnection(),
     };

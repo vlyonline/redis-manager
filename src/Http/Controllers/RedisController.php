@@ -53,6 +53,7 @@ class RedisController extends BaseController
         $manager = $this->manager();
 
         return $manager->scan(
+            $request->get('db', "1"),
             $request->get('pattern', '*'),
             $request->get('count', config('redis-manager.results_per_page', 50))
         );
