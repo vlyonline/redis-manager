@@ -3,11 +3,10 @@
         <div>
             <div style="margin-top: 15px;">
                 <el-input placeholder="*" v-model="pattern" @keyup.enter.native="scan" class="input-with-select">
-
                   <el-select v-model="db" slot="prepend" placeholder="SELECT DB">
+                    <el-option label="DEFAULT" value=""></el-option>
                     <el-option v-for="db in 16" :key="db-1" :label="'SELECT '+(db-1)" :value="db-1"></el-option>
                   </el-select>
-
                 </el-input>
                 <div class="button-group">
                   
@@ -102,7 +101,7 @@ export default {
     return {
       pattern: "*",
       // select: "1",
-      db: "0",
+      db: "",
       multipleSelection: [],
       keys: [],
       loading: true,
