@@ -201,7 +201,7 @@ class RedisManager
     {
         $client = $this->getConnection();
         $keys = [];
-        if ($db !== null or $db !== "") {
+        if ($db !== null and $db !== "") {
             $client->select($db);
         }
         foreach (new Keyspace($client->client(), $pattern) as $item) {
