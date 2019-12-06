@@ -84,6 +84,9 @@
 .action-btns {
   float: right;
 }
+.el-select {
+    width: 130px;
+}
 </style>
 
 <script>
